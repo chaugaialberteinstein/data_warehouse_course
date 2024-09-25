@@ -1,0 +1,26 @@
+select
+order_line_id as sales_order_line_key,
+quantity as quantity,
+unit_price as unit_price
+from
+
+
+dbt run --select fact_sales_order_line
+dbt test --select tag:lesson-0101
+dbt run --select fact_sales_order_line
+dbt test --select tag:lesson-0102
+
+
+complex query
+same query 4 user (net/user)
+
+select
+stock_item_id AS product_key
+, stock_item_name AS product_name
+, brand AS brand_name
+
+from warehouse__stock_items
+
+
+
+stock_item_id AS product_key

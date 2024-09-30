@@ -1,0 +1,12 @@
+6. data type
+datalake : copy của dữ liệu gốc
+k khớp hoàn toàn với dữ liệu hệ thống
+string vs date time
+số điện thoại
+DATA TYPE BIG QUERY
+
+
+
+0105 tach lop xu ly - quan ly code
+cte
+cast(a) * cast(b)

@@ -1,0 +1,100 @@
+9-10:30
+2-3:30
+5h co Phuong
+cast
+- itg
+order_line_id : sales_order_line_key
+stock_item_id : product_key
+quantity : quantity
+- numeric
+unit_price
+q* unit_price : gross_amount
+
+WITH fact_sales_order_line__source AS(
+	SELEcT *
+	FROM sales__order_lines 
+)
+, fact_sales_order_line__rename_column AS (
+	SELECT
+		order_line_id AS sales_order_line_key
+		, stock_item_id AS product_key
+		, quantity
+		, unit_price
+	from fact_sales_order_line__source
+)
+
+
+SELECT
+	CAST(sales_order_line_key AS INTEGER) AS sales_order_line_key
+	, CAST(product_key_id AS INTEGER) AS product_key
+	, CAST(quantity AS INTEGER) AS quantity
+	, CAST(unit_price AS NUMERIC) AS unit_price
+	, CAST(quantity AS INTEGER) * CAST(unit_price AS NUMERIC) AS gross_amount
+FROM fact_sales_order_line__rename_column
+
+
+fact header 
+và line
+
+dim_customer
+
+sales__customers
+customer_id AS customer_key,
+customer_name AS customer_name
+
+WITH dim_customer__source AS (
+	SELECT
+	*
+	FROM `vit-lam-data.wide_world_importers.sales__customers`
+)
+
+, dim_customer__rename_column AS (
+	SELECT
+		customer_id AS  customer_key,
+		customer_name
+	FROM dim_customer__source
+)
+
+, dim_customer__cast_type AS (
+	SELECT
+		CAST(customer_key AS INTEGER) AS customer_key
+		, CAST(customer_name AS STRING) AS customer_name	
+	FROM dim_customer__rename_column	
+)
+
+SELECT
+	customer_key
+	, customer_name
+FROM dim_customer__cast_type
+
+		
+dữ liệu khách - fact sales orders line- dim customer
+1 đơn hàng 1 khách mua
+khách nào mua đơn nào (sales orders- header ko nằm bên line)
+dữ liệu khách hàng - bảng customer
+- connect dữ liệu bảng dim 
+
+
+
+dim_customer
+
+snow flake schema
+sale_order trong sale order line
+	
+fact_sales_order (link customer key- đưa vào ->) fact_sales_order_line
+connect sales vs customers
+1. join - cte
+
+sales_order_lines vs sales_orders
+fact_line vs fact_header
+
+with fact_sales_order_line_source
+,fact_sales_order_line__rename_column
+,fact sales_order_line__cast_type
+,fact_sales_order_line__calculate_fact
+ 
+
+****** join same column (same data type - data lake)
+2. Join - select cuối
+
+

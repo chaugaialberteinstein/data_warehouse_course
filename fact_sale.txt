@@ -96,5 +96,58 @@ with fact_sales_order_line_source
 
 ****** join same column (same data type - data lake)
 2. Join - select cuối
+không same type column khi join
+
+3. staging
+tách lớp xử lý 
+tách model
+staging : stg_fact_sales_order.sql
+sales_order_key(header)
+
+fact_sales_order_line.sql
+
+start table model
+start view model
+
+view ko preview, number of rows
+nhung co query
+ko dung chart
+mà đưa dữ liệu vao fact sales order line
+
+
+DÙNG ĐÚNG LOẠI
+JOIN LOẠI NÀO 
+INNER JOIN
+LEFT JOIN
+RIGHT JOIN
+FULL OUTER JOIN
+
+dữ liệu trên data lake bị thiếu,
+tùy loại join lấy dc dữ liệu cuối ko
+
+INNER JOIN : 
+VLOOKUP : KO XUẤT HIỆN BẢNG FACT_SALES_ORDER(HEADER)
+->  MẤT REVENUE
+
+
+LINE LEFT JOIN HEADER
+- LEFT : NULL 
+VẪN ĐƯỢC GIỮ LẠI CÁC DÒNG NULL
+(METRIC NẰM Ở BẢNG LINE NHIỀU HƠN)
+
+FULL OUTER JOIN
+thừa
+
+dbt ref
+- order of running
+
+MANAGE ADDED DATA SOURCES
+FACT_SALES_ORDER_LINE
+edit connection
+reconnect
+
+FLATTEN MANY-TO-ONE
+FL DIMENSION
+
 
 

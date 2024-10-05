@@ -37,5 +37,5 @@ SELECT
   fact_line.unit_price,
   fact_line.gross_amount
 FROM fact_sales_order_line__calculate_column AS fact_line 
-LEFT JOIN `robotic-sky-436604-s4.learn_dbt_nga_staging.stg_fact_sales_order_line` AS fact_header
+LEFT JOIN {{ref('stg_fact_sales_order_line')}} AS fact_header
   ON fact_line.sales_order_key = fact_header.sales_order_key
